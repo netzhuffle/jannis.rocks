@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<title>jannis.rocks | gje.ch</title>
+<style>
+  @import url(https://fonts.googleapis.com/css?family=Raleway|Roboto:700|Orbitron:500);
+  
+	body {
+		font-family: 'Raleway', sans-serif;
+		background: #2e2c2f;
+	}
+	main {
+		background: #e9f5f7;
+		border: 1px solid #f7fcff;
+		border-radius: 1em;
+		margin: 2em auto;
+		padding: 2em;
+		width: 26.7%;
+	}
+	
+	h1 {
+	  color: #898e84;
+	  position: relative;
+	}
+	#logo_jannisrocks {
+	  display: block;
+    position: absolute;
+    bottom: -.25em;
+	  left: -7.6em;
+	}
+	#logo_jannis {
+	  font-family: 'Roboto', sans-serif;
+	  font-weight: 700;
+	  font-size: 2em;
+	  display: inline-block;
+	  color: #b6bdc8;
+	}
+	#logo_rocks {
+	  font-family: 'Orbitron', sans-serif;
+	  font-weight: 500;
+	  color: #e19625;
+	  text-shadow: 0px 2px 7px rgba(0, 0, 0, 0.4);
+	  display: inline-block;
+	  position: absolute;
+	  left: 48%;
+	  bottom: .3em;
+	  width: 3.7em;
+	  transform: rotate(0deg);
+	  transition: transform ease;
+	}
+	#logo_rocks > span {
+	  display: inline-block;
+	  transition: transform ease;
+	}
+	#logo_and {
+	  font-size: 1.2em;
+	  color: #b9c1bf;
+	  display: block;
+	  position: absolute;
+	  left: -.83em;
+	  bottom: -.1em;
+	}
+	
+	address {
+		font-style: normal;
+	}
+	.country {
+	  font-style: italic;
+	}
+	
+	p:nth-of-type(n+2) {
+		margin: 0;
+	}
+</style>
+<body>
+  <main>
+    <h1>
+      <span id="logo_jannisrocks">
+        <span id="logo_jannis">Jannis</span><!-- no space
+     --><span id="logo_rocks"><!-- no space
+       --><span>.</span><!-- no space
+       --><span>r</span><!-- no space
+       --><span>o</span><!-- no space
+       --><span>c</span><!-- no space
+       --><span>k</span><!-- no space
+       --><span>s</span><!-- no space
+     --></span>
+      </span>
+      <span id="logo_and">&</span>
+      gje.ch
+    </h1>
+    <address>
+      <p>
+        Jannis Grimm<br>
+        Pappelweg 13<br>
+        8604 Volketswil<br>
+        <span class="country">Switzerland</span>
+      </p>
+      <p>
+      	<a href="jannis-grimm.pdf">CV (PDF)</a>,
+      	<a href="https://www.linkedin.com/in/jannis-grimm/">LinkedIn/jannis-grimm</a>
+      </p>
+      <p>
+        <a href="http://twitter.com/netzhuffle">twitter.com/@netzhuffle</a>
+      </p>
+      <p>
+      	<a href="https://github.com/netzhuffle">github.com/netzhuffle</a>
+      </p>
+      <p>
+        <a href="mailto:j@jannis.rocks">j@jannis.rocks</a>
+      </p>
+    </address>
+    <p>
+      Old projects:
+      <a href="headlines/">Headline Generator</a>,
+      <a href="boardgameshelf.php">Boardgame Shelf</a>
+    </p>
+  </main>
+  <script>
+    function rotate(time, degrees) {
+      this.style.transitionDuration = time + 's';
+      this.style.transform = 'rotate(' + degrees + 'deg)';
+    }
+    
+    function wiggle(fromDegrees, toDegrees) {
+      var time = 0.075;
+      rotate.call(this, time, fromDegrees);
+      setTimeout(rotate.bind(this, time, toDegrees), 1000 * time);
+      setTimeout(rotate.bind(this, time, fromDegrees), 2000 * time);
+      setTimeout(rotate.bind(this, time, toDegrees), 3000 * time);
+    }
+    
+    function flip(ratio) {
+      this.style.transform = 'scaleX(' + ratio + ')';
+    }
+    
+    function flipChildren(ratio) {
+      var elements = this.children;
+      var elementsNumber = elements.length
+      var time = 0.15;
+      var delay = 0.08;
+      var backDelay = -0.3;
+      for (var i = 0; i < elementsNumber; i++) {
+        var element = elements[i];
+        element.style.transitionDuration = time + 's';
+        setTimeout(flip.bind(element, ratio), 1000 * i * delay);
+        setTimeout(flip.bind(element, 1), 1000 * (backDelay + delay * elementsNumber + i * delay));
+      }
+    }
+    
+    function animate() {
+      wiggle.call(this, fromDegrees, toDegrees);
+      setTimeout(wiggle.bind(this, fromDegrees, toDegrees), 2500);
+      setTimeout(flipChildren.bind(this, -1), 4000);
+      setTimeout(animate.bind(this), 10000);
+    }
+    
+    var rocksLogo = document.getElementById('logo_rocks');
+    var fromDegrees = 6;
+    var toDegrees = -12;
+    
+    setTimeout(rotate.bind(rocksLogo, .5, toDegrees), 200);
+    setTimeout(animate.bind(rocksLogo), 1500);
+  </script>
+</body>
